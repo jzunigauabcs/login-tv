@@ -10,11 +10,11 @@ package com.uabcs.model;
  * @author jzuniga
  */
 public class User {
+    
        private int id;
        private String email;
        private String password;
-       public static final String TABLE = "user";
-       
+       public static final String TABLE = "user";  
 
     public int getId() {
         return id;
