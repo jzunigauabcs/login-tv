@@ -5,6 +5,7 @@
  */
 package javaapplication9;
 
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -13,7 +14,7 @@ import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-
+        
 /**
  *
  * @author jzuniga
@@ -110,14 +111,15 @@ public class VLogin extends javax.swing.JFrame {
         // TODO add your handling code here:
         String email = jTextField1.getText();
         String password = String.valueOf(jPasswordField1.getPassword());
-       
+        
         String URL = "jdbc:mysql://localhost:3306/";
         String USERNAME = "root";
         String PASSWORD = "root";
-        String DB = "login?autoReconnect=true&useSSL=false";
+        String DB = "login?useSSL=false&serverTimezone=UTC";
         
-        Connection connection;
+        //DBConnection connection;
         try {
+            Connection connection;
             Class.forName("com.mysql.jdbc.Driver");
             connection = DriverManager.getConnection(URL + DB, USERNAME, PASSWORD);
             String query = "SELECT count(*) as user FROM user "  +
