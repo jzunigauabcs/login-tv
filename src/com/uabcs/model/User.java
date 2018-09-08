@@ -14,6 +14,7 @@ public class User {
        private String email;
        private String password;
        public static final String TABLE = "user";
+       
 
     public int getId() {
         return id;
