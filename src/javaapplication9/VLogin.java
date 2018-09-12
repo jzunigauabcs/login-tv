@@ -112,34 +112,6 @@ public class VLogin extends javax.swing.JFrame {
         String email = jTextField1.getText();
         String password = String.valueOf(jPasswordField1.getPassword());
         
-        String URL = "jdbc:mysql://localhost:3306/";
-        String USERNAME = "root";
-        String PASSWORD = "root";
-        String DB = "login?useSSL=false&serverTimezone=UTC";
-        
-        //DBConnection connection;
-        try {
-            Connection connection;
-            Class.forName("com.mysql.jdbc.Driver");
-            connection = DriverManager.getConnection(URL + DB, USERNAME, PASSWORD);
-            String query = "SELECT count(*) as user FROM user "  +
-            "where email = '" + email +
-            "' AND password = sha1('" + password + "');";
-            Statement stm = connection.createStatement();
-            ResultSet rs = stm.executeQuery(query);
-            if(rs.next()) {
-                if(rs.getInt("user") == 1) {
-                    JOptionPane.showMessageDialog(this, "Bienvenido");
-                } else {
-                    JOptionPane.showMessageDialog(this, "Error al iniciar sesión");
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(VLogin.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(VLogin.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
