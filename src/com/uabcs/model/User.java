@@ -6,6 +6,8 @@
 package com.uabcs.model;
 
 import com.uabcs.db.DBConnection;
+import com.uabcs.util.Helper;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -66,12 +68,14 @@ public class User {
         return null;
     }
     
-    public User login(String email, String password) throws ClassNotFoundException, SQLException {
+    public static User login(String email, String password) throws ClassNotFoundException, SQLException, NoSuchAlgorithmException {
         User user = User.findByEmail(email);
         if(user != null) {
-           if(user.getPassword().equals(password)) {
-               
+            String sha1Password = Helper.hash1(password);
+           if(user.getPassword().equals(sha1Password)) {
+               return user;
            }
+           return null;
         }
         return null;
     }

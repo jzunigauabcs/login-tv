@@ -3,9 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package javaapplication9;
+package uabcs.com.view;
 
 
+import com.uabcs.model.User;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -112,6 +114,20 @@ public class VLogin extends javax.swing.JFrame {
         String email = jTextField1.getText();
         String password = String.valueOf(jPasswordField1.getPassword());
         
+        try {
+            User user = User.login(email, password);
+            if(user != null) {
+                JOptionPane.showMessageDialog(this, "Bienvenido");
+            } else {
+                JOptionPane.showMessageDialog(this, "Datos incorrectos");
+            }
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(VLogin.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(VLogin.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(VLogin.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
